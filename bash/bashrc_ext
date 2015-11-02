@@ -1,0 +1,52 @@
+# Extension of .bashrc
+
+# NOTE: Just add the following lines to the end of .bashrc.
+
+# if [ -f ~/.bashrc_ext ]; then
+#   . ~/.bashrc_ext
+# fi
+
+# Customize command history control.
+HISTCONTROL=ignoreboth
+HISTSIZE=""
+HISTIGNORE="&:cd:ls:ll:la:lla:[bf]g:exit:pwd:jobs:ps:..:..."
+shopt -s histappend
+
+# Check the window size after each command.
+# If necessary, update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# Enable color support of ls and also add handy default aliases.
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# Some more ls aliases.
+alias ll='ls -lF'
+alias la='ls -A'
+alias l='ls -CF'
+alias lla='ls -lAF'
+
+# Enable vi binding.
+set -o vi
+
+# Print greetings.
+echo -e "Kernel Information: " `uname -smr`
+echo -ne "Uptime: "; uptime
+echo -ne "Server Time: "; date
+echo -e
+
+# More custom aliases.
+if [ -f ~/.bash_aliases_ext ]; then
+    . ~/.bash_aliases_ext
+fi
+
+# Other custom default bash settings, if there are any.
+if [ -f ~/.bash_profile_ext ]; then
+    . ~/.bash_profile_ext
+fi
+

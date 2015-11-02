@@ -1,0 +1,7 @@
+# List of custom aliases.
+
+alias ..='cd ..'
+alias ...='cd ..; cd ..'
+
+alias gvim='gvim -reverse 2> ~/.vim/null'
+
